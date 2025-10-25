@@ -1,11 +1,19 @@
+enum Status {
+    Some(u32),
+    None,
+}
+
 fn main() {
-    let mut s1: String = String::from("Abhi");
-    
-    let s2: &mut String = &mut s1;
-    s2.push_str("marka");
+    let statuses = [
+        Status::Some(5),
+        Status::None,
+        Status::Some(10),
+    ];
 
-    let s3: &String = &s1;
-    let s4: &String = &s1;
-    println!("{} {}", s3, s4);
-
-}  
+    for status in statuses {
+        match status {
+            Status::Some(val) => println!("Got a value: {}", val),
+            Status::None => println!("No value here"),
+        }
+    }
+}
