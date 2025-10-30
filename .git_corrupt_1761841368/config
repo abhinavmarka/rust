@@ -1,0 +1,8 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "rust"]
+	url = git@github.com:abhinavmarka/rust.git
+	fetch = +refs/heads/*:refs/remotes/rust/*
