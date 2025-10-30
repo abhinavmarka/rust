@@ -10,5 +10,5 @@ fn swap_and_print<T: Debug>(a: T, b: T) -> (T, T) {
 
 fn main() {
     let (x, y) = swap_and_print(10, 20);
-    let (s1, s2) = swap_and_print("Hello", "Rust");
+    let (s1, s2) = swap_and_print("Hello", "java");
 }
