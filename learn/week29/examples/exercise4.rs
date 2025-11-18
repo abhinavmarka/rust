@@ -1,26 +1,33 @@
-#[derive(Debug, Clone)]
-struct User {
-    name: String,
-    id: u32,
+#[route(GET)]
+fn get_user() {
+    println!("Getting user");
 }
 
-#[derive(Debug)]
-enum Role {
-    Admin,
-    User,
+#[route(POST)]
+fn create_user() {
+    println!("Creating user");
+}
+
+#[route(PUT)]
+fn update_user() {
+    println!("Updating user");
+}
+
+#[derive(Sql("users"))]
+
+struct User {
+    id: u32,
+    name: String,
+    email: String,
+}
+
+impl User {
+    fn new(id: u32, name: String, email: String) -> Self {
+        Self { id, name, email }
+    }
 }
 
 fn main() {
-    let user1 = User {
-        name: String::from("chris"),
-        id: 101,
-    };
-    
-    let user2 = user1.clone();
-    let role = Role::Admin;
-    
-    println!("User 1: {:?}", user1);
-    println!("User 2: {:?}", user2);
-    println!("Role: {:?}", role);
+    let user = User::new(1, "Mark".to_string(), "mark.in@mail.com".to_string());
+    println!("User: {:?}", user);
 }
-
