@@ -5,6 +5,18 @@ use solana_program::{
 
 };
 
+#[derive{BorshDeserialize, BorshSerialize}]
+
+enum Instruction {
+    Increment,
+    Decrement,
+}
+
+#[derive(BorshDeserialize, BorshSerialize)]
+struct Counter {
+    count: u32,
+}
+
 entrypoint!{counter_contract};
 
 pub fn counter_contract(
@@ -12,5 +24,13 @@ pub fn counter_contract(
     accounts: &[AccountInfo],
     instruction_data: &[u8]
     ) -> ProgramResult {
+        Ok(())
+    } -> ProgramResult {
+        let acc: &AccountInfo<'_, Counter> = next_account_info(&mut accounts.iter())?;
+        match instruction_data[0] {
+            0 => counter.count += 1,
+            1 => counter.count -= 1,
+            _ => return Err(ErrorCode::InvalidInstruction.into()),
+        }
         Ok(())
     }
